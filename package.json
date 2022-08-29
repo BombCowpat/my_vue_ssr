@@ -1,0 +1,32 @@
+{
+  "name": "my_vue_ssr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "rimraf ./dist && npm run build:client && npm run build:server",
+    "build:client": "webpack --config ./build/webpack.client.config.js",
+    "build:server": "webpack --config ./build/webpack.server.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "node-fetch": "2.6.7",
+    "vue": "2.7.10",
+    "vue-loader": "15.10.0",
+    "vue-router": "3.6.4",
+    "vue-server-renderer": "2.7.10",
+    "vuex": "3.6.2"
+  },
+  "devDependencies": {
+    "css-loader": "^6.7.1",
+    "rimraf": "^3.0.2",
+    "vue-template-compiler": "2.7.10",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-merge": "^5.8.0"
+  }
+}
