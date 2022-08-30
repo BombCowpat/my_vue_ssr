@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   css-loader: ^6.7.1
   express: ^4.18.1
+  lru-cache: ^7.14.0
   node-fetch: 2.6.7
   rimraf: ^3.0.2
   vue: 2.7.10
@@ -17,6 +18,7 @@ specifiers:
 
 dependencies:
   express: registry.npmmirror.com/express/4.18.1
+  lru-cache: registry.npmmirror.com/lru-cache/7.14.0
   node-fetch: registry.npmmirror.com/node-fetch/2.6.7
   vue: registry.npmmirror.com/vue/2.7.10
   vue-loader: registry.npmmirror.com/vue-loader/15.10.0_acb0b581772484ee6821a64503117fbc
@@ -1364,6 +1366,13 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: registry.npmmirror.com/yallist/4.0.0
+
+  registry.npmmirror.com/lru-cache/7.14.0:
+    resolution: {integrity: sha512-EIRtP1GrSJny0dqb50QXRUNBxHJhcpxHC++M5tD7RYbvLLn5KVWKsbyswSSqDuU15UFi3bgTQIY8nhDMeF6aDQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lru-cache/-/lru-cache-7.14.0.tgz}
+    name: lru-cache
+    version: 7.14.0
+    engines: {node: '>=12'}
+    dev: false
 
   registry.npmmirror.com/media-typer/0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/media-typer/-/media-typer-0.3.0.tgz}
