@@ -3,8 +3,8 @@ const path = require('path')
 const express = require('express')
 const LRU = require('lru-cache')
 const { createBundleRenderer } = require('vue-server-renderer')
-const serverBundle = require('./dist/vue-ssr-server-bundle.json')
-const clientManifest = require('./dist/vue-ssr-client-manifest.json')
+
+const isProd = process.env.NODE_ENV === 'production'
 
 const server = express()
 
@@ -22,15 +22,39 @@ const isCacheable = req => {
   }
 }
 
-const renderer = createBundleRenderer(serverBundle, {
-  runInNewContext: false,
-  template: fs.readFileSync('./index.template.html', 'utf-8'),
-  clientManifest,
-})
+let renderer
+let readyPromise
+const templatePath = path.resolve(__dirname, './index.template.html')
+
+function createRenderer(bundle, options) {
+  return createBundleRenderer(
+    bundle,
+    Object.assign(options, {
+      runInNewContext: false,
+    })
+  )
+}
+
+if (isProd) {
+  const bundle = require('./dist/vue-ssr-server-bundle.json')
+  const clientManifest = require('./dist/vue-ssr-client-manifest.json')
+  const template = fs.readFileSync(templatePath, 'utf-8')
+  renderer = createRenderer(bundle, {
+    template,
+    clientManifest,
+  })
+} else {
+  const setupDevServer = require('./build/setup-dev-server')
+  readyPromise = setupDevServer(server, templatePath, (bundle, options) => {
+    renderer = createRenderer(bundle, options)
+  })
+}
 
 server.use('/dist', express.static(path.resolve(__dirname, './dist')))
 
-server.get('*', (req, res) => {
+function render(req, res) {
+  const s = Date.now()
+
   const cacheable = isCacheable(req)
   if (cacheable) {
     const hit = microCache.get(req.url)
@@ -51,9 +75,20 @@ server.get('*', (req, res) => {
       if (cacheable) {
         microCache.set(req.url, html)
       }
+      if (!isProd) {
+        console.log(`whole request: ${Date.now() - s}ms`)
+      }
       res.end(html)
     }
   })
+}
+
+server.get('*', (req, res) => {
+  if (isProd) {
+    render(req, res)
+  } else {
+    readyPromise.then(() => render(req, res))
+  }
 })
 
 server.listen(8088, () => {
