@@ -18,6 +18,7 @@ specifiers:
   webpack: ^5.74.0
   webpack-cli: ^4.10.0
   webpack-dev-middleware: ^5.3.3
+  webpack-hot-middleware: ^2.25.2
   webpack-merge: ^5.8.0
 
 dependencies:
@@ -32,6 +33,7 @@ dependencies:
   vue-server-renderer: registry.npmmirror.com/vue-server-renderer/2.7.10
   vuex: registry.npmmirror.com/vuex/3.6.2_vue@2.7.10
   webpack-dev-middleware: registry.npmmirror.com/webpack-dev-middleware/5.3.3_webpack@5.74.0
+  webpack-hot-middleware: registry.npmmirror.com/webpack-hot-middleware/2.25.2
 
 devDependencies:
   cross-env: registry.npmmirror.com/cross-env/7.0.3
@@ -487,6 +489,21 @@ packages:
       json-schema-traverse: registry.npmmirror.com/json-schema-traverse/1.0.0
       require-from-string: registry.npmmirror.com/require-from-string/2.0.2
       uri-js: registry.npmmirror.com/uri-js/4.4.1
+    dev: false
+
+  registry.npmmirror.com/ansi-html-community/0.0.8:
+    resolution: {integrity: sha512-1APHAyr3+PCamwNw3bXCPp4HFLONZt/yIH0sZp0/469KWNTEy+qN5jQ3GVX6DMZ1UXAi34yVwtTeaG/HpBuuzw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ansi-html-community/-/ansi-html-community-0.0.8.tgz}
+    name: ansi-html-community
+    version: 0.0.8
+    engines: {'0': node >= 0.8.0}
+    hasBin: true
+    dev: false
+
+  registry.npmmirror.com/ansi-regex/5.0.1:
+    resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/ansi-regex/-/ansi-regex-5.0.1.tgz}
+    name: ansi-regex
+    version: 5.0.1
+    engines: {node: '>=8'}
     dev: false
 
   registry.npmmirror.com/ansi-styles/4.3.0:
@@ -1308,6 +1325,12 @@ packages:
     name: he
     version: 1.2.0
     hasBin: true
+
+  registry.npmmirror.com/html-entities/2.3.3:
+    resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/html-entities/-/html-entities-2.3.3.tgz}
+    name: html-entities
+    version: 2.3.3
+    dev: false
 
   registry.npmmirror.com/http-errors/2.0.0:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/http-errors/-/http-errors-2.0.0.tgz}
@@ -2220,6 +2243,15 @@ packages:
       safe-buffer: registry.npmmirror.com/safe-buffer/5.1.2
     dev: false
 
+  registry.npmmirror.com/strip-ansi/6.0.1:
+    resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/strip-ansi/-/strip-ansi-6.0.1.tgz}
+    name: strip-ansi
+    version: 6.0.1
+    engines: {node: '>=8'}
+    dependencies:
+      ansi-regex: registry.npmmirror.com/ansi-regex/5.0.1
+    dev: false
+
   registry.npmmirror.com/supports-color/7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/supports-color/-/supports-color-7.2.0.tgz}
     name: supports-color
@@ -2592,6 +2624,16 @@ packages:
       range-parser: registry.npmmirror.com/range-parser/1.2.1
       schema-utils: registry.npmmirror.com/schema-utils/4.0.0
       webpack: registry.npmmirror.com/webpack/5.74.0_webpack-cli@4.10.0
+    dev: false
+
+  registry.npmmirror.com/webpack-hot-middleware/2.25.2:
+    resolution: {integrity: sha512-CVgm3NAQyfdIonRvXisRwPTUYuSbyZ6BY7782tMeUzWOO7RmVI2NaBYuCp41qyD4gYCkJyTneAJdK69A13B0+A==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/webpack-hot-middleware/-/webpack-hot-middleware-2.25.2.tgz}
+    name: webpack-hot-middleware
+    version: 2.25.2
+    dependencies:
+      ansi-html-community: registry.npmmirror.com/ansi-html-community/0.0.8
+      html-entities: registry.npmmirror.com/html-entities/2.3.3
+      strip-ansi: registry.npmmirror.com/strip-ansi/6.0.1
     dev: false
 
   registry.npmmirror.com/webpack-merge/5.8.0:

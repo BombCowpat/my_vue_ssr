@@ -42,12 +42,16 @@ module.exports = function setupDevServer(server, templatePath, cb) {
   })
 
   // dev middleware
+  clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app] // HMR
+  clientConfig.output.filename = '[name].js'
+  clientConfig.plugins.push(new webpack.HotModuleReplacementPlugin()) // HMR
+
   const clientCompiler = webpack(clientConfig)
   const devMiddleware = middleware(clientCompiler, {
     publicPath: clientConfig.output.publicPath,
   })
   server.use(devMiddleware)
-
+  server.use(require('webpack-hot-middleware')(clientCompiler, { heartbeat: 5000 })) // HMR
   // 在devMiddleware钩子中获取clientManifest，注意，在devMiddleware编译成功后只会调用一次，会导致后续修改客户端代码无法更新，从而客户端和服务端内容不一致
   /* devMiddleware.waitUntilValid(() => {
     clientManifest = JSON.parse(devMiddleware.context.outputFileSystem.readFileSync(path.join(clientConfig.output.path, 'vue-ssr-client-manifest.json'), 'utf-8'))
