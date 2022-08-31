@@ -15,7 +15,7 @@ const microCache = new LRU({
 const isCacheable = req => {
   // 实现逻辑为，检查请求是否是用户特定(user-specific)。
   // 只有非用户特定 (non-user-specific) 页面才会缓存
-  if (req.url === '/') {
+  if (req.url === '/' && !isProd) {
     return true
   } else {
     return false

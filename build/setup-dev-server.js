@@ -48,20 +48,20 @@ module.exports = function setupDevServer(server, templatePath, cb) {
   })
   server.use(devMiddleware)
 
-  // 在devMiddleware钩子中获取clientManifest
-  devMiddleware.waitUntilValid(() => {
+  // 在devMiddleware钩子中获取clientManifest，注意，在devMiddleware编译成功后只会调用一次，会导致后续修改客户端代码无法更新，从而客户端和服务端内容不一致
+  /* devMiddleware.waitUntilValid(() => {
     clientManifest = JSON.parse(devMiddleware.context.outputFileSystem.readFileSync(path.join(clientConfig.output.path, 'vue-ssr-client-manifest.json'), 'utf-8'))
     update()
-  })
+  }) */
   // 在webapck钩子中获取clientManifest
-  /* clientCompiler.hooks.done.tap('MyPlugin', stats => {
+  clientCompiler.hooks.done.tap('MyPlugin', stats => {
     stats = stats.toJson()
     stats.errors.forEach(err => console.error(err))
     stats.warnings.forEach(err => console.warn(err))
     if (stats.errors.length) return
     clientManifest = JSON.parse(devMiddleware.context.outputFileSystem.readFileSync(path.join(clientConfig.output.path, 'vue-ssr-client-manifest.json'), 'utf-8'))
     update()
-  }) */
+  })
 
   // watch and update server renderer
   const serverCompiler = webpack(serverConfig)
